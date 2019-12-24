@@ -4,7 +4,6 @@ void main() => runApp(new MyApp());
 
 class MyApp extends StatelessWidget {
   final title = 'Flutter Sample App';
-  final message = 'Sample Message';
 
   @override
   Widget build(BuildContext context){
@@ -12,7 +11,6 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo App',
       home: new MyHomePage(
         title: title,
-        message: message
       ),
     );
   }
@@ -20,23 +18,42 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatefulWidget {
   final String title;
-  final String message;
-  MyHomePage({this.title, this.message}): super();
+  MyHomePage({this.title}): super();
   @override
   _MyHomePageState createState() => new _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  String _message;
+
+  @override
+  void initState(){
+    super.initState();
+    _message = 'Hello!';
+  }
+  void _setMessage(){
+    setState(() {
+      _message = 'You Taped!';
+    });
+  }
+
   @override
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
         ),
+
       body: Text(
-        widget.message,
+        _message,
         style: TextStyle(fontSize:32.0),
       ),
+
+      floatingActionButton: FloatingActionButton(
+        onPressed: _setMessage,
+        tooltip: 'set message',
+        child: Icon(Icons.star),
+        ),
     );
   }
 }
