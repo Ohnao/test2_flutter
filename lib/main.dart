@@ -11,8 +11,8 @@ class MyApp extends StatelessWidget {
     return new MaterialApp(
       title: 'Flutter Demo App',
       home: new MyHomePage(
-        title: this.title,
-        message: this.message
+        title: title,
+        message: message
       ),
     );
   }
