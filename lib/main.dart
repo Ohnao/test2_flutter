@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context){
     return new MaterialApp(
       title: 'Flutter Demo App',
-      home: new MyHomePaage(
+      home: new MyHomePage(
         title: this.title,
         message: this.message
       ),
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatefulWidget {
   final String title;
   final String message;
-  MyHomePage({this.title, this.message$}): super();
+  MyHomePage({this.title, this.message}): super();
   @override
   _MyHomePageState createState() => new _MyHomePageState();
 }
