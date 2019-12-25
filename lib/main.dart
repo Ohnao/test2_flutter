@@ -68,7 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: _setData,
         tooltip: 'set message',
-        child: Icon(Icons.star),
+        child: Icon(Icons.add),
         ),
     );
   }
