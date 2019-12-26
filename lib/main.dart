@@ -8,68 +8,42 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context){
     return new MaterialApp(
-      title: 'Flutter Demo App',
-      home: new MyHomePage(
-        title: title,
+      title: 'Material layout',
+      theme: new ThemeData(
+        primarySwatch: Colors.blue,
+        primaryColor: const Color(0xFF2196f3),
+        accentColor: const Color(0xFF2196f3),
+        canvasColor: const Color(0xFFfafafa),
       ),
+      home: new MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  final String title;
-  MyHomePage({this.title}): super();
+  MyHomePage({Key key}) : super(key: key);
   @override
   _MyHomePageState createState() => new _MyHomePageState();
 }
 
-class Data{
-  int _price;
-  String _name;
-  Data(this._name, this._price): super();
-  @override
-  String toString(){
-    return _name + ':' + _price.toString() + '¥';
-  }
-}
-
 class _MyHomePageState extends State<MyHomePage> {
-  static final _data = [
-    Data('Apple',200),
-    Data('Orange',150),
-    Data('Peach',300)
-  ];
-
-  Data _item;
-
-  @override
-  void initState(){
-    super.initState();
-    _item = _data[0];
-  }
-  void _setData(){
-    setState(() {
-      _item = (_data..shuffle()).first;
-    });
-  }
-
   @override
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text('Material layout App'),
         ),
 
       body: Text(
-        _item.toString(),
-        style: TextStyle(fontSize:32.0),
+        "Hello, Design!!",
+          style: TextStyle(
+            fontSize: 32.0,
+            color: const Color(0xFF000000),
+            fontWeight: FontWeight.w700,
+            fontFamily: "Roboto",
+          ),
       ),
-
-      floatingActionButton: FloatingActionButton(
-        onPressed: _setData,
-        tooltip: 'set message',
-        child: Icon(Icons.add),
-        ),
     );
   }
+  void fabPressed(){}
 }
