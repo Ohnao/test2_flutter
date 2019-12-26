@@ -10,10 +10,8 @@ class MyApp extends StatelessWidget {
     return new MaterialApp(
       title: 'Material layout',
       theme: new ThemeData(
-        primarySwatch: Colors.blue,
-        primaryColor: const Color(0xFF2196f3),
-        accentColor: const Color(0xFF2196f3),
-        canvasColor: const Color(0xFFfafafa),
+        primarySwatch: Colors.pink,
+        primaryColor: Colors.red,
       ),
       home: new MyHomePage(),
     );
@@ -27,22 +25,40 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  var _islight = true;
   @override
   Widget build(BuildContext context){
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Material layout App'),
-        ),
-
-      body: Text(
-        "Hello, Design!!",
-          style: TextStyle(
-            fontSize: 32.0,
-            color: const Color(0xFF000000),
-            fontWeight: FontWeight.w700,
-            fontFamily: "Roboto",
-          ),
+    return Theme(
+      data: new ThemeData(
+        brightness: _islight ? Brightness.light : Brightness.dark,
+        primaryColor: Colors.pink[400],
       ),
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('Material layout App'),
+          ),
+
+        body:
+          Container (
+            child:
+              Text(
+                "Hello, Design!!",
+                  style: TextStyle(
+                    fontSize: 32.0,
+                    fontWeight: FontWeight.w700,
+                    fontFamily: "Roboto",
+                  ),
+            ),
+            padding:
+              const EdgeInsets.all(10.0),
+            alignment: Alignment.center,
+          ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {setState(() => _islight = !_islight);},
+          tooltip: 'You can change screen mode',
+          child: _islight ? Icon(Icons.flare) : Icon(Icons.brightness_2),
+        ),
+      )
     );
   }
   void fabPressed(){}
