@@ -37,9 +37,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
         body:
           Column (
-            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              Expanded(
+              SizedBox(
+                width: 200,
+                height: 200,
                 child: Padding(
                   padding: EdgeInsets.all(25.0),
                   child: Container(
@@ -55,29 +56,15 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
               ),
-              Expanded(
+              SizedBox(
+                width: 200,
+                height: 200,
                 child: Padding(
                   padding: EdgeInsets.all(25.0),
                   child: Container(
                     color: Color.fromARGB(225, 225, 25, 0),
                       child: Text(
                         'Second item',
-                        style: TextStyle(
-                          fontSize: 32.0,
-                          fontWeight: FontWeight.w400,
-                          fontFamily: "Roboto",
-                        ),
-                      ),
-                  ),
-                ),
-              ),
-              Expanded(
-                child: Padding(
-                  padding: EdgeInsets.all(25.0),
-                  child: Container(
-                    color: Color.fromARGB(225, 225, 225, 0),
-                      child: Text(
-                        'Tird item',
                         style: TextStyle(
                           fontSize: 32.0,
                           fontWeight: FontWeight.w400,
