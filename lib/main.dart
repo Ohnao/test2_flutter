@@ -38,9 +38,8 @@ class _MyHomePageState extends State<MyHomePage> {
         body:
           Column (
             children: <Widget>[
-              SizedBox(
-                width: 200,
-                height: 200,
+              FractionallySizedBox(
+                widthFactor: 0.3,
                 child: Padding(
                   padding: EdgeInsets.all(25.0),
                   child: Container(
@@ -56,15 +55,14 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
               ),
-              SizedBox(
-                width: 200,
-                height: 200,
+              FractionalTranslation(
+                translation: Offset(0.2,1.0),
                 child: Padding(
                   padding: EdgeInsets.all(25.0),
                   child: Container(
-                    color: Color.fromARGB(225, 225, 25, 0),
+                    color: Color.fromARGB(225, 225, 125, 0),
                       child: Text(
-                        'Second item',
+                        'First item',
                         style: TextStyle(
                           fontSize: 32.0,
                           fontWeight: FontWeight.w400,
