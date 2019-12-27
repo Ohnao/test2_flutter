@@ -21,60 +21,6 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   var _islight = true;
-  var _gridData = <Widget> [
-    Container(
-      color: Colors.pink,
-      width: 200.0,
-      height: 200.0,
-      child: Text(
-        "One",
-        style: TextStyle(
-          fontSize: 32.0,
-          fontWeight: FontWeight.w400,
-          fontFamily: "Roboto"
-        ),
-      ),
-    ),
-    Container(
-      color: Colors.green,
-      width: 200.0,
-      height: 200.0,
-      child: Text(
-        "Two",
-        style: TextStyle(
-          fontSize: 32.0,
-          fontWeight: FontWeight.w400,
-          fontFamily: "Roboto"
-        ),
-      ),
-    ),
-    Container(
-      color: Colors.blue,
-      width: 200.0,
-      height: 200.0,
-      child: Text(
-        "Tree",
-        style: TextStyle(
-          fontSize: 32.0,
-          fontWeight: FontWeight.w400,
-          fontFamily: "Roboto"
-        ),
-      ),
-    ),
-    Container(
-      color: Colors.yellow,
-      width: 200.0,
-      height: 200.0,
-      child: Text(
-        "four",
-        style: TextStyle(
-          fontSize: 32.0,
-          fontWeight: FontWeight.w400,
-          fontFamily: "Roboto"
-        ),
-      ),
-    ),
-  ];
 
   @override
   Widget build(BuildContext context){
@@ -90,12 +36,58 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
 
         body:
-          GridView.count (
-            crossAxisCount: 2,
-            mainAxisSpacing: 10.0,
-            crossAxisSpacing: 10.0,
-            padding: const EdgeInsets.all(10.0),
-            children: _gridData,
+          Column (
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.all(25.0),
+                  child: Container(
+                    color: Color.fromARGB(225, 225, 125, 0),
+                      child: Text(
+                        'First item',
+                        style: TextStyle(
+                          fontSize: 32.0,
+                          fontWeight: FontWeight.w400,
+                          fontFamily: "Roboto",
+                        ),
+                      ),
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.all(25.0),
+                  child: Container(
+                    color: Color.fromARGB(225, 225, 25, 0),
+                      child: Text(
+                        'Second item',
+                        style: TextStyle(
+                          fontSize: 32.0,
+                          fontWeight: FontWeight.w400,
+                          fontFamily: "Roboto",
+                        ),
+                      ),
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.all(25.0),
+                  child: Container(
+                    color: Color.fromARGB(225, 225, 225, 0),
+                      child: Text(
+                        'Tird item',
+                        style: TextStyle(
+                          fontSize: 32.0,
+                          fontWeight: FontWeight.w400,
+                          fontFamily: "Roboto",
+                        ),
+                      ),
+                  ),
+                ),
+              ),
+            ],
           ),
 
         floatingActionButton: FloatingActionButton(
