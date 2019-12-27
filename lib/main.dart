@@ -21,6 +21,20 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   var _islight = true;
+  var _message;
+  static var _janken = <String>['Gu!!','Chi!!','Pa!!'];
+
+  @override
+  void initState() {
+    _message = 'OK';
+    super.initState();
+  }
+
+  void buttonPressed(){
+    setState(() {
+      _message = (_janken..shuffle()).first;
+    });
+  }
 
   @override
   Widget build(BuildContext context){
@@ -34,48 +48,51 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(
           title: Text('Material layout App'),
           ),
-
         body:
-        Center(
-          child: Card(
-            margin: EdgeInsets.all(50.0),
-            color: Colors.pink,
+          Center(
             child:
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 mainAxisSize: MainAxisSize.max,
-                crossAxisAlignment: CrossAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
-                  Text(
-                    "Hello!!!",
-                    style: TextStyle(
-                      fontSize: 32.0,
-                      color: Colors.yellow,
-                      fontWeight: FontWeight.w400,
-                      fontFamily: "Roboto"
+                  Padding(
+                    padding: EdgeInsets.all(20.0),
+                    child: Text(
+                      _message,
+                      style: TextStyle(
+                        fontSize: 32.0,
+                        fontWeight: FontWeight.w400,
+                        fontFamily: "Roboto",
                       ),
                     ),
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
                   ),
-                  Text(
-                    "This is Card layout",
-                    style: TextStyle(
-                      fontSize: 24.0,
-                      color: Colors.yellow,
-                      fontWeight: FontWeight.w200,
-                      fontFamily: "Roboto"
-                    ),
+                  FlatButton(
+                    key: null,
+                    color: Colors.black54,
+                    onPressed: buttonPressed,
+                    child:
+                      Padding(
+                        padding: EdgeInsets.all(10.0),
+                        child:
+                          Text(
+                            "Push this button",
+                            style: TextStyle(
+                              fontSize: 32.0,
+                              fontWeight: FontWeight.w400,
+                              fontFamily: "Roboto",
+                            ),
+                          ),
+                      ),
                   ),
-                ]
+                ],
               ),
           ),
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {setState(() => _islight = !_islight);},
-          tooltip: 'You can change screen mode',
-          child: _islight ? Icon(Icons.flare) : Icon(Icons.brightness_2),
-        ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {setState(() => _islight = !_islight);},
+            tooltip: 'You can change screen mode',
+            child: _islight ? Icon(Icons.flare) : Icon(Icons.brightness_2),
+          ),
       )
     );
   }
