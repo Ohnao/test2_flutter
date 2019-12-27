@@ -33,6 +33,7 @@ class _MyHomePageState extends State<MyHomePage> {
         brightness: _islight ? Brightness.light : Brightness.dark,
         primaryColor: Colors.pink[400],
       ),
+
       child: Scaffold(
         appBar: AppBar(
           title: Text('Material layout App'),
@@ -49,10 +50,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     fontFamily: "Roboto",
                   ),
             ),
-            padding:
-              const EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(10.0),
             alignment: Alignment.center,
           ),
+
         floatingActionButton: FloatingActionButton(
           onPressed: () {setState(() => _islight = !_islight);},
           tooltip: 'You can change screen mode',
@@ -61,5 +62,4 @@ class _MyHomePageState extends State<MyHomePage> {
       )
     );
   }
-  void fabPressed(){}
 }
