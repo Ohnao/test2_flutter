@@ -36,45 +36,41 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
 
         body:
-          Column (
-            children: <Widget>[
-              FractionallySizedBox(
-                widthFactor: 0.3,
-                child: Padding(
-                  padding: EdgeInsets.all(25.0),
-                  child: Container(
-                    color: Color.fromARGB(225, 225, 125, 0),
-                      child: Text(
-                        'First item',
-                        style: TextStyle(
-                          fontSize: 32.0,
-                          fontWeight: FontWeight.w400,
-                          fontFamily: "Roboto",
-                        ),
+        Center(
+          child: Card(
+            margin: EdgeInsets.all(50.0),
+            color: Colors.pink,
+            child:
+              Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    "Hello!!!",
+                    style: TextStyle(
+                      fontSize: 32.0,
+                      color: Colors.yellow,
+                      fontWeight: FontWeight.w400,
+                      fontFamily: "Roboto"
                       ),
+                    ),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
                   ),
-                ),
-              ),
-              FractionalTranslation(
-                translation: Offset(0.2,1.0),
-                child: Padding(
-                  padding: EdgeInsets.all(25.0),
-                  child: Container(
-                    color: Color.fromARGB(225, 225, 125, 0),
-                      child: Text(
-                        'First item',
-                        style: TextStyle(
-                          fontSize: 32.0,
-                          fontWeight: FontWeight.w400,
-                          fontFamily: "Roboto",
-                        ),
-                      ),
+                  Text(
+                    "This is Card layout",
+                    style: TextStyle(
+                      fontSize: 24.0,
+                      color: Colors.yellow,
+                      fontWeight: FontWeight.w200,
+                      fontFamily: "Roboto"
+                    ),
                   ),
-                ),
+                ]
               ),
-            ],
           ),
-
+        ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {setState(() => _islight = !_islight);},
           tooltip: 'You can change screen mode',
