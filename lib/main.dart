@@ -30,9 +30,15 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
   }
 
-  void buttonPressed(){
+  void button(){
     setState(() {
       _message = (_janken..shuffle()).first;
+    });
+  }
+
+  void buttonPressed(){
+    setState(() {
+      _message = 'Reset your game';
     });
   }
 
@@ -70,7 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   FlatButton(
                     key: null,
                     color: Colors.black54,
-                    onPressed: buttonPressed,
+                    onPressed: button,
                     child:
                       Padding(
                         padding: EdgeInsets.all(10.0),
@@ -84,6 +90,16 @@ class _MyHomePageState extends State<MyHomePage> {
                             ),
                           ),
                       ),
+                  ),
+                  RaisedButton(
+                    onPressed: buttonPressed,
+                    child: Padding(
+                      padding: EdgeInsets.all(10.0),
+                      child: Icon(
+                        Icons.android,
+                        size: 50.0,
+                      ),
+                    ),
                   ),
                 ],
               ),
