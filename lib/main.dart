@@ -92,7 +92,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                   ),
                   Container(
-                    padding: EdgeInsets.all(50.0),
+                    padding: EdgeInsets.all(20.0),
                     child: RaisedButton(
                       onPressed: buttonPressed,
                       child: Padding(
@@ -106,13 +106,35 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   Container(
                     alignment: Alignment.center,
-                    padding: EdgeInsets.all(50.0),
+                    padding: EdgeInsets.all(20.0),
                     child: IconButton(
                       icon: const Icon(Icons.insert_emoticon),
                       iconSize: 100,
                       color: Colors.red,
                       onPressed: buttonPressed,
-                      padding: EdgeInsets.all(50.0),
+                      padding: EdgeInsets.all(20.0),
+                    ),
+                  ),
+                  FloatingActionButton(
+                    child: Icon(Icons.android),
+                    onPressed: buttonPressed,
+                  ),
+                  Container(
+                    padding: EdgeInsets.all(20.0),
+                    child: RawMaterialButton(
+                      fillColor: Colors.white,
+                      elevation: 10.0,
+                      padding: EdgeInsets.all(10.0),
+                      child: Text(
+                        "Push this button",
+                        style: TextStyle(
+                          fontSize: 32.0,
+                          color: const Color(0xFF000000),
+                          fontWeight: FontWeight.w400,
+                          fontFamily: "Roboto",
+                        ),
+                      ),
+                      onPressed: buttonPressed,
                     ),
                   ),
                 ],
