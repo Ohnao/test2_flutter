@@ -91,14 +91,28 @@ class _MyHomePageState extends State<MyHomePage> {
                           ),
                       ),
                   ),
-                  RaisedButton(
-                    onPressed: buttonPressed,
-                    child: Padding(
-                      padding: EdgeInsets.all(10.0),
-                      child: Icon(
-                        Icons.android,
-                        size: 50.0,
+                  Container(
+                    padding: EdgeInsets.all(50.0),
+                    child: RaisedButton(
+                      onPressed: buttonPressed,
+                      child: Padding(
+                        padding: EdgeInsets.all(20.0),
+                        child: Icon(
+                          Icons.android,
+                          size: 50.0,
+                        ),
                       ),
+                    ),
+                  ),
+                  Container(
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.all(50.0),
+                    child: IconButton(
+                      icon: const Icon(Icons.insert_emoticon),
+                      iconSize: 100,
+                      color: Colors.red,
+                      onPressed: buttonPressed,
+                      padding: EdgeInsets.all(50.0),
                     ),
                   ),
                 ],
