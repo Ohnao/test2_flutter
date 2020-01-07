@@ -22,7 +22,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   var _islight = true;
   String _message;
-  double _value = 0.0;
 
   @override
   void initState(){
@@ -30,11 +29,21 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
   }
 
-  void sliderChanged(double value){
-    setState(() {
-      _value = value.floorToDouble();
-      _message = 'set value: $_value';
-    });
+  void dialogPush(){
+    showDialog(
+      context: context,
+      builder: (BuildContext context) => Container(
+        color: Colors.white70,
+        child: Text(
+          "Hello",
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 28.0,
+            decorationStyle: TextDecorationStyle.solid,
+          ),
+        ),
+      ),
+    );
   }
 
   @override Widget build(BuildContext context){
@@ -57,19 +66,27 @@ class _MyHomePageState extends State<MyHomePage> {
                     _message,
                     style: TextStyle(
                       fontSize: 32.0,
+                      color: const Color(0xFF000000),
                       fontWeight: FontWeight.w400,
                       fontFamily: "Roboto",
                     ),
                   ),
                   Padding(
+                    padding: const EdgeInsets.all(10.0),
+                  ),
+                  RaisedButton(
+                    onPressed: dialogPush,
                     padding: EdgeInsets.all(10.0),
-                  ),
-                  Slider(
-                    onChanged: sliderChanged,
-                    min: 0.0,
-                    max: 100.0,
-                    value: _value,
-                  ),
+                    child: Text(
+                      "tap this",
+                      style: TextStyle(
+                        fontSize: 28.0,
+                        color: const Color(0xFF000000),
+                        fontWeight: FontWeight.w400,
+                        fontFamily: "Roboto",
+                      ),
+                    ),
+                  )
                 ],
               ),
           ),
