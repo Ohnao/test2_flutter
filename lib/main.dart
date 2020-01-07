@@ -32,17 +32,10 @@ class _MyHomePageState extends State<MyHomePage> {
   void dialogPush(){
     showDialog(
       context: context,
-      builder: (BuildContext context) => Container(
-        color: Colors.white70,
-        child: Text(
-          "Hello",
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 28.0,
-            decorationStyle: TextDecorationStyle.solid,
-          ),
+      builder: (BuildContext context) => AlertDialog(
+        title: Text("Warning"),
+        content: Text("This is warning!!"),
         ),
-      ),
     );
   }
 
