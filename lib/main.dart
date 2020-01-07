@@ -61,7 +61,6 @@ class _MyHomePageState extends State<MyHomePage> {
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 mainAxisSize: MainAxisSize.max,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   Padding(
                     padding: EdgeInsets.all(20.0),
@@ -97,7 +96,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ),
                   ),
-                  Checkbox(
+                  Switch(
                     value: _checked,
                     onChanged: checkChanged,
                   ),
