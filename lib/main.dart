@@ -22,17 +22,27 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   var _islight = true;
   var _yourMessage;
+  var _checkMessage;
+  bool _checked = false;
   final controller = TextEditingController();
 
   @override
   void initState() {
     _yourMessage = 'String';
+    _checkMessage = 'check';
     super.initState();
   }
 
   void textChanged(String val){
     setState(() {
       _yourMessage = 'You said ' + val.toUpperCase();
+    });
+  }
+
+  void checkChanged(bool value){
+    setState(() {
+      _checked = value;
+      _checkMessage = value ? 'checked' : 'not checked';
     });
   }
 
@@ -76,6 +86,29 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ),
                   ),
+                  Padding(
+                    padding: EdgeInsets.all(40.0),
+                    child: Text(
+                      _checkMessage,
+                      style: TextStyle(
+                        fontSize: 32.0,
+                        fontWeight: FontWeight.w500,
+                        fontFamily: "Roboto",
+                      ),
+                    ),
+                  ),
+                  Checkbox(
+                    value: _checked,
+                    onChanged: checkChanged,
+                  ),
+                  Text(
+                    "check",
+                    style: TextStyle(
+                      fontSize: 28.0,
+                      fontWeight: FontWeight.w400,
+                      fontFamily: "Roboto",
+                    )
+                  )
                 ],
               ),
           ),
