@@ -63,29 +63,26 @@ class _MyHomePageState extends State<MyHomePage> {
                   Padding(
                     padding: EdgeInsets.all(10.0),
                   ),
-                  DropdownButton<String>(
-                    onChanged: (String value)=> popupSelected(value),
-                    value: _selected,
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 28.0,
-                      fontWeight: FontWeight.w500,
-                      fontFamily: "Roboto",
-                    ),
-                    items: <DropdownMenuItem<String>>[
-                      const DropdownMenuItem<String>(
-                        value: 'One',
-                        child: const Text('One'),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: PopupMenuButton<String>(
+                        onSelected: (String value)=> popupSelected(value),
+                        itemBuilder: (BuildContext context) =>
+                        <PopupMenuEntry<String>>[
+                          const PopupMenuItem<String>(
+                            value: 'One',
+                            child: const Text('One'),
+                          ),
+                          const PopupMenuItem<String>(
+                            value: 'Two',
+                            child: const Text('Two'),
+                          ),
+                          const PopupMenuItem<String>(
+                            value: 'Ttree',
+                            child: const Text('Three'),
+                          ),
+                        ]
                       ),
-                      const DropdownMenuItem<String>(
-                        value: 'Two',
-                        child: const Text('Two'),
-                      ),
-                      const DropdownMenuItem<String>(
-                        value: 'Ttree',
-                        child: const Text('Three'),
-                      ),
-                    ]
                   ),
                 ],
               ),
