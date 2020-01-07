@@ -30,9 +30,9 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
   }
 
-  void textPush(){
+  void textChanged(String val){
     setState(() {
-      _yourMessage = 'You said ' + controller.text;
+      _yourMessage = val.toUpperCase();
     });
   }
 
@@ -67,28 +67,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   Padding(
                     padding: EdgeInsets.all(10.0),
                     child: TextField(
+                      onChanged: textChanged,
                       controller: controller,
                       style: TextStyle(fontSize: 28.0,
                       color: const Color(0xFFF0000),
                       fontWeight: FontWeight.w400,
                       fontFamily: "Roboto",
-                      ),
-                    ),
-                  ),
-                  Container(
-                    padding: EdgeInsets.all(20.0),
-                    child: RaisedButton(
-                      onPressed: textPush,
-                      child: Padding(
-                        padding: EdgeInsets.all(20.0),
-                        child: Text(
-                          "Push your message",
-                          style: TextStyle(
-                            fontSize:32.0,
-                            fontWeight: FontWeight.w400,
-                            fontFamily: "Roboto",
-                          )
-                        ),
                       ),
                     ),
                   ),
