@@ -24,12 +24,15 @@ class _MyHomePageState extends State<MyHomePage> {
   var _yourMessage;
   var _checkMessage;
   bool _checked = false;
+  String _selected = 'A';
+  String _message;
   final controller = TextEditingController();
 
   @override
   void initState() {
     _yourMessage = 'String';
     _checkMessage = 'check';
+    _message = 'OK';
     super.initState();
   }
 
@@ -43,6 +46,13 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       _checked = value;
       _checkMessage = value ? 'checked' : 'not checked';
+    });
+  }
+
+  void checkRadio(String value){
+    setState(() {
+      _selected = value;
+      _message = 'select: $_selected';
     });
   }
 
@@ -100,14 +110,62 @@ class _MyHomePageState extends State<MyHomePage> {
                     value: _checked,
                     onChanged: checkChanged,
                   ),
+                  Padding(
+                    padding: EdgeInsets.all(10.0),
+                  ),
                   Text(
-                    "check",
+                    _message,
                     style: TextStyle(
-                      fontSize: 28.0,
+                      fontSize: 32.0,
                       fontWeight: FontWeight.w400,
                       fontFamily: "Roboto",
-                    )
-                  )
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(10.0),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.max,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+
+                    children: <Widget>[
+                      Radio<String>(
+                        value: 'A',
+                        groupValue: _selected,
+                        onChanged: (String value)=> checkRadio(value),
+                      ),
+                      Text(
+                        "Radio A",
+                        style: TextStyle(
+                          fontSize:28.0,
+                          fontWeight: FontWeight.w400,
+                          fontFamily: "Roboto",
+                        ),
+                      )
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.max,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+
+                    children: <Widget>[
+                      Radio<String>(
+                        value: 'B',
+                        groupValue: _selected,
+                        onChanged: (String value)=> checkRadio(value),
+                      ),
+                      Text(
+                        "Radio B",
+                        style: TextStyle(
+                          fontSize:28.0,
+                          fontWeight: FontWeight.w400,
+                          fontFamily: "Roboto",
+                        ),
+                      )
+                    ],
+                  ),
                 ],
               ),
           ),
