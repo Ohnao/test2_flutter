@@ -32,7 +32,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void textChanged(String val){
     setState(() {
-      _yourMessage = val.toUpperCase();
+      _yourMessage = 'You said ' + val.toUpperCase();
     });
   }
 
