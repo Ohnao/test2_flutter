@@ -22,7 +22,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   var _islight = true;
   String _message;
-  String _selected = 'One';
+  double _value = 0.0;
 
   @override
   void initState(){
@@ -30,12 +30,13 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
   }
 
-  void popupSelected(String value){
+  void sliderChanged(double value){
     setState(() {
-      _selected = value;
-      _message = 'select: $_selected';
+      _value = value.floorToDouble();
+      _message = 'set value: $_value';
     });
   }
+
   @override Widget build(BuildContext context){
     return Theme(
       data: new ThemeData(
@@ -55,34 +56,19 @@ class _MyHomePageState extends State<MyHomePage> {
                   Text(
                     _message,
                     style: TextStyle(
-                      fontSize:32.0,
+                      fontSize: 32.0,
                       fontWeight: FontWeight.w400,
-                      fontFamily: 'Roboto',
+                      fontFamily: "Roboto",
                     ),
                   ),
                   Padding(
                     padding: EdgeInsets.all(10.0),
                   ),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: PopupMenuButton<String>(
-                        onSelected: (String value)=> popupSelected(value),
-                        itemBuilder: (BuildContext context) =>
-                        <PopupMenuEntry<String>>[
-                          const PopupMenuItem<String>(
-                            value: 'One',
-                            child: const Text('One'),
-                          ),
-                          const PopupMenuItem<String>(
-                            value: 'Two',
-                            child: const Text('Two'),
-                          ),
-                          const PopupMenuItem<String>(
-                            value: 'Ttree',
-                            child: const Text('Three'),
-                          ),
-                        ]
-                      ),
+                  Slider(
+                    onChanged: sliderChanged,
+                    min: 0.0,
+                    max: 100.0,
+                    value: _value,
                   ),
                 ],
               ),
