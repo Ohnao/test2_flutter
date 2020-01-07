@@ -21,41 +21,21 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   var _islight = true;
-  var _yourMessage;
-  var _checkMessage;
-  bool _checked = false;
-  String _selected = 'A';
   String _message;
-  final controller = TextEditingController();
+  String _selected = 'One';
 
   @override
-  void initState() {
-    _yourMessage = 'String';
-    _checkMessage = 'check';
-    _message = 'OK';
+  void initState(){
+    _message = 'ok';
     super.initState();
   }
 
-  void textChanged(String val){
-    setState(() {
-      _yourMessage = 'You said ' + val.toUpperCase();
-    });
-  }
-
-  void checkChanged(bool value){
-    setState(() {
-      _checked = value;
-      _checkMessage = value ? 'checked' : 'not checked';
-    });
-  }
-
-  void checkRadio(String value){
+  void popupSelected(String value){
     setState(() {
       _selected = value;
       _message = 'select: $_selected';
     });
   }
-
   @override Widget build(BuildContext context){
     return Theme(
       data: new ThemeData(
@@ -72,99 +52,40 @@ class _MyHomePageState extends State<MyHomePage> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 mainAxisSize: MainAxisSize.max,
                 children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.all(20.0),
-                    child: Text(
-                      _yourMessage,
-                      style: TextStyle(
-                        fontSize: 32.0,
-                        fontWeight: FontWeight.w400,
-                        fontFamily: "Roboto",
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(10.0),
-                    child: TextField(
-                      onChanged: textChanged,
-                      controller: controller,
-                      style: TextStyle(fontSize: 28.0,
-                      color: const Color(0xFFF0000),
-                      fontWeight: FontWeight.w400,
-                      fontFamily: "Roboto",
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(40.0),
-                    child: Text(
-                      _checkMessage,
-                      style: TextStyle(
-                        fontSize: 32.0,
-                        fontWeight: FontWeight.w500,
-                        fontFamily: "Roboto",
-                      ),
-                    ),
-                  ),
-                  Switch(
-                    value: _checked,
-                    onChanged: checkChanged,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(10.0),
-                  ),
                   Text(
                     _message,
                     style: TextStyle(
-                      fontSize: 32.0,
+                      fontSize:32.0,
                       fontWeight: FontWeight.w400,
-                      fontFamily: "Roboto",
+                      fontFamily: 'Roboto',
                     ),
                   ),
                   Padding(
                     padding: EdgeInsets.all(10.0),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.max,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-
-                    children: <Widget>[
-                      Radio<String>(
-                        value: 'A',
-                        groupValue: _selected,
-                        onChanged: (String value)=> checkRadio(value),
+                  DropdownButton<String>(
+                    onChanged: (String value)=> popupSelected(value),
+                    value: _selected,
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 28.0,
+                      fontWeight: FontWeight.w500,
+                      fontFamily: "Roboto",
+                    ),
+                    items: <DropdownMenuItem<String>>[
+                      const DropdownMenuItem<String>(
+                        value: 'One',
+                        child: const Text('One'),
                       ),
-                      Text(
-                        "Radio A",
-                        style: TextStyle(
-                          fontSize:28.0,
-                          fontWeight: FontWeight.w400,
-                          fontFamily: "Roboto",
-                        ),
-                      )
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.max,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-
-                    children: <Widget>[
-                      Radio<String>(
-                        value: 'B',
-                        groupValue: _selected,
-                        onChanged: (String value)=> checkRadio(value),
+                      const DropdownMenuItem<String>(
+                        value: 'Two',
+                        child: const Text('Two'),
                       ),
-                      Text(
-                        "Radio B",
-                        style: TextStyle(
-                          fontSize:28.0,
-                          fontWeight: FontWeight.w400,
-                          fontFamily: "Roboto",
-                        ),
-                      )
-                    ],
+                      const DropdownMenuItem<String>(
+                        value: 'Ttree',
+                        child: const Text('Three'),
+                      ),
+                    ]
                   ),
                 ],
               ),
