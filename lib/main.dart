@@ -21,38 +21,29 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   var _islight = true;
-  var _message;
-  static var _janken = <String>['Gu!!','Chi!!','Pa!!'];
+  var _yourMessage;
+  final controller = TextEditingController();
 
   @override
   void initState() {
-    _message = 'OK';
+    _yourMessage = 'String';
     super.initState();
   }
 
-  void button(){
+  void textPush(){
     setState(() {
-      _message = (_janken..shuffle()).first;
+      _yourMessage = 'You said ' + controller.text;
     });
   }
 
-  void buttonPressed(){
-    setState(() {
-      _message = 'Reset your game';
-    });
-  }
-
-  @override
-  Widget build(BuildContext context){
+  @override Widget build(BuildContext context){
     return Theme(
       data: new ThemeData(
         brightness: _islight ? Brightness.light : Brightness.dark,
-        primaryColor: Colors.pink[400],
-      ),
-
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text('Material layout App'),
+        primaryColor: Colors.pink[400],),
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text('Material layout App'),
           ),
         body:
           Center(
@@ -65,7 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   Padding(
                     padding: EdgeInsets.all(20.0),
                     child: Text(
-                      _message,
+                      _yourMessage,
                       style: TextStyle(
                         fontSize: 32.0,
                         fontWeight: FontWeight.w400,
@@ -73,68 +64,32 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ),
                   ),
-                  FlatButton(
-                    key: null,
-                    color: Colors.black54,
-                    onPressed: button,
-                    child:
-                      Padding(
-                        padding: EdgeInsets.all(10.0),
-                        child:
-                          Text(
-                            "Push this button",
-                            style: TextStyle(
-                              fontSize: 32.0,
-                              fontWeight: FontWeight.w400,
-                              fontFamily: "Roboto",
-                            ),
-                          ),
+                  Padding(
+                    padding: EdgeInsets.all(10.0),
+                    child: TextField(
+                      controller: controller,
+                      style: TextStyle(fontSize: 28.0,
+                      color: const Color(0xFFF0000),
+                      fontWeight: FontWeight.w400,
+                      fontFamily: "Roboto",
                       ),
+                    ),
                   ),
                   Container(
                     padding: EdgeInsets.all(20.0),
                     child: RaisedButton(
-                      onPressed: buttonPressed,
+                      onPressed: textPush,
                       child: Padding(
                         padding: EdgeInsets.all(20.0),
-                        child: Icon(
-                          Icons.android,
-                          size: 50.0,
+                        child: Text(
+                          "Push your message",
+                          style: TextStyle(
+                            fontSize:32.0,
+                            fontWeight: FontWeight.w400,
+                            fontFamily: "Roboto",
+                          )
                         ),
                       ),
-                    ),
-                  ),
-                  Container(
-                    alignment: Alignment.center,
-                    padding: EdgeInsets.all(20.0),
-                    child: IconButton(
-                      icon: const Icon(Icons.insert_emoticon),
-                      iconSize: 100,
-                      color: Colors.red,
-                      onPressed: buttonPressed,
-                      padding: EdgeInsets.all(20.0),
-                    ),
-                  ),
-                  FloatingActionButton(
-                    child: Icon(Icons.android),
-                    onPressed: buttonPressed,
-                  ),
-                  Container(
-                    padding: EdgeInsets.all(20.0),
-                    child: RawMaterialButton(
-                      fillColor: Colors.white,
-                      elevation: 10.0,
-                      padding: EdgeInsets.all(10.0),
-                      child: Text(
-                        "Push this button",
-                        style: TextStyle(
-                          fontSize: 32.0,
-                          color: const Color(0xFF000000),
-                          fontWeight: FontWeight.w400,
-                          fontFamily: "Roboto",
-                        ),
-                      ),
-                      onPressed: buttonPressed,
                     ),
                   ),
                 ],
