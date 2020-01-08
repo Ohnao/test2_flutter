@@ -20,8 +20,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  var _islight = true;
   String _message;
+  String _stars = "";
+  int _star = 2;
 
   @override
   void initState(){
@@ -29,94 +30,68 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
   }
 
-  void dialogPush(){
-    showModalBottomSheet(
-      context: context,
-      builder: (BuildContext context) => Column(
-        children: <Widget>[
-          Text(
-            'This is Modal Bottom Sheat',
-            style: TextStyle(
-              fontSize: 24.0,
-              fontWeight: FontWeight.w300,
-              color: Colors.black,
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.all(10.0),
-          ),
-          FlatButton(
-            onPressed: () => Navigator.pop<String>(context, 'Close'),
-            child: Text(
-              'Close',
-              style: TextStyle(
-                fontSize: 24.0,
-                fontWeight: FontWeight.w300,
-                color: Colors.cyan,
-              ),
-            ),
-          ),
-        ],
-      )
-    ).then<void>((value) => resultAlert(value));
-  }
-
-  void resultAlert(String value){
-    setState(() {
-      _message = 'selected $value';
-    });
-  }
-
-  @override Widget build(BuildContext context){
-    return Theme(
-      data: new ThemeData(
-        brightness: _islight ? Brightness.light : Brightness.dark,
-        primaryColor: Colors.pink[400],),
-        child: Scaffold(
+  @override
+  Widget build(BuildContext context){
+    return Scaffold(
           appBar: AppBar(
             title: Text('Material layout App'),
+            leading: BackButton(
+              color: Colors.white,
+            ),
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(Icons.android),
+                tooltip: 'add star',
+                onPressed: iconPressedA,
+              ),
+              IconButton(
+                icon: Icon(Icons.favorite),
+                tooltip: 'subtract star',
+                onPressed: iconPressedB,
+              ),
+            ],
+            bottom: PreferredSize(
+              preferredSize: const Size.fromHeight(30.0),
+              child: Center(
+                child:
+                  Text(_stars,
+                    style: TextStyle(
+                      fontSize: 22.0,
+                      color: Colors.white,
+                    ),
+                  ),
+              ),
           ),
+        ),
         body:
           Center(
             child:
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                mainAxisSize: MainAxisSize.max,
-                children: <Widget>[
-                  Text(
-                    _message,
-                    style: TextStyle(
-                      fontSize: 32.0,
-                      color: const Color(0xFF000000),
-                      fontWeight: FontWeight.w400,
-                      fontFamily: "Roboto",
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                  ),
-                  RaisedButton(
-                    onPressed: dialogPush,
-                    padding: EdgeInsets.all(10.0),
-                    child: Text(
-                      "tap this",
-                      style: TextStyle(
-                        fontSize: 28.0,
-                        color: const Color(0xFF000000),
-                        fontWeight: FontWeight.w400,
-                        fontFamily: "Roboto",
-                      ),
-                    ),
-                  )
-                ],
+              Text(
+                _message,
+                style: const TextStyle(
+                  fontSize: 28.0,
+                ),
               ),
           ),
-          floatingActionButton: FloatingActionButton(
-            onPressed: () {setState(() => _islight = !_islight);},
-            tooltip: 'You can change screen mode',
-            child: _islight ? Icon(Icons.flare) : Icon(Icons.brightness_2),
-          ),
-      )
     );
+  }
+  void iconPressedA(){
+    _message = 'tap "android".';
+    _star++;
+    update();
+  }
+
+  void iconPressedB(){
+    _message = 'tap "favorite".';
+    _star--;
+    update();
+  }
+
+  void update(){
+    _star = _star < 0 ? 0 : _star > 5 ? 5 : _star;
+    setState(() {
+      _stars = '★★★★★☆☆☆☆☆'.substring(5 - _star, 5 - _star + 5);
+      _message = _message + '[$_star]';
+    });
   }
 }
