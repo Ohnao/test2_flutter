@@ -19,66 +19,53 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => new _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  List _items = <Widget>[];
+class _MyHomePageState extends State<MyHomePage>
+  with SingleTickerProviderStateMixin {
+    final List<Tab> tabs = <Tab>[
+      Tab(text: 'One',),
+      Tab(text: 'Two',),
+      Tab(text: 'Three',),
+    ];
 
-  @override
-  void initState(){
-    super.initState();
-    for (var i = 0; i < 10; i++){
-      var item = Container(
-        color: i.isOdd ? Colors.blue : Colors.white,
-        height: 100.0,
-        child: Center(
-          child: Text(
-            'No, $i',
-            style: const TextStyle(fontSize: 32.0),
-          ),
-        ),
+    TabController _tabController;
+
+    @override
+    void initState(){
+      super.initState();
+      _tabController = TabController(
+        vsync: this,
+        length: tabs.length,
       );
-      _items.add(item);
     }
-  }
 
   @override
   Widget build(BuildContext context){
     return Scaffold(
           appBar: AppBar(
             title: Text('Material layout App'),
-            leading: BackButton(
-              color: Colors.white,
+            bottom: TabBar(
+              controller: _tabController,
+              tabs: tabs,
             ),
           ),
-          body: CustomScrollView(
-            slivers: <Widget>[
-              SliverAppBar(
-                pinned: true,
-                expandedHeight: 200.0,
-                flexibleSpace: FlexibleSpaceBar(
-                  title: Text('sliver'),
-                  background: Stack(
-                    fit: StackFit.expand,
-                    children: <Widget>[
-                      Image.asset(
-                        'images/planet.jpg',
-                        fit:BoxFit.fill,
-                      )
-                    ],
-                  ),
-                ),
-                actions: <Widget>[
-                  IconButton(
-                    icon: const Icon(Icons.android),
-                    tooltip: 'icon button',
-                    onPressed: (){ print('pressed');},
-                  )
-                ],
-              ),
-              SliverList(
-                delegate: SliverChildListDelegate(_items),
-              )
-            ],
+          body: TabBarView(
+            controller: _tabController,
+            children: tabs.map((Tab tab){
+              return createTab(tab);
+            }).toList(),
           )
     );
   }
+}
+
+Widget createTab(Tab tab){
+  return Center(
+    child: Text(
+      'This is "'+ tab.text + '" Tab.',
+      style: const TextStyle(
+        fontSize: 32.0,
+        color: Colors.blue,
+      ),
+    ),
+  );
 }
