@@ -21,12 +21,15 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   String _message;
+  String _message2;
   String _stars = "";
   int _star = 2;
+  int _index = 0;
 
   @override
   void initState(){
     _message = 'ok';
+    _message = 'stay';
     super.initState();
   }
 
@@ -63,15 +66,40 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
           ),
         ),
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: _index,
+          items: <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              title: Text('bottom'),
+              icon: Icon(Icons.android),
+            ),
+            BottomNavigationBarItem(
+              title: Text('bottom'),
+              icon: Icon(Icons.favorite),
+            ),
+          ],
+          onTap: tapBottomIcon,
+        ),
         body:
-          Center(
-            child:
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
               Text(
                 _message,
                 style: const TextStyle(
                   fontSize: 28.0,
                 ),
               ),
+              Padding(
+                padding: EdgeInsets.all(20.0),
+              ),
+              Text(
+                _message2,
+                style: const TextStyle(
+                  fontSize: 28.0,
+                ),
+              ),
+            ]
           ),
     );
   }
@@ -92,6 +120,14 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       _stars = '★★★★★☆☆☆☆☆'.substring(5 - _star, 5 - _star + 5);
       _message = _message + '[$_star]';
+    });
+  }
+
+  void tapBottomIcon(int value){
+    var items = ['Android', 'Heart'];
+    setState(() {
+      _index = value;
+      _message2 = 'You tapped "'+ items[_index] + '"';
     });
   }
 }
