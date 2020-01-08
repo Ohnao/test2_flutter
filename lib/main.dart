@@ -22,14 +22,17 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   String _message;
   String _message2;
+  String _message3;
   String _stars = "";
   int _star = 2;
   int _index = 0;
+  int _index2;
 
   @override
   void initState(){
     _message = 'ok';
-    _message = 'stay';
+    _message2 = 'stay';
+    _message3 = 'stand by';
     super.initState();
   }
 
@@ -99,6 +102,51 @@ class _MyHomePageState extends State<MyHomePage> {
                   fontSize: 28.0,
                 ),
               ),
+              Padding(
+                padding: EdgeInsets.all(20.0),
+              ),
+              Text(
+                _message3,
+                style: const TextStyle(
+                  fontSize: 28.0,
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.all(20.0),
+              ),
+              ListView(
+                shrinkWrap: true,
+                padding: const EdgeInsets.all(20.0),
+                children: <Widget>[
+                  ListTile(
+                    leading: const Icon(Icons.favorite),
+                    title: const Text('First choice'),
+                    selected: _index2 == 1,
+                    onTap: () {
+                      _index2 = 1;
+                      tapTile();
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.android),
+                    title: const Text('Second choice'),
+                    selected: _index2 == 2,
+                    onTap: () {
+                      _index2 = 2;
+                      tapTile();
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.favorite_border),
+                    title: const Text('Third choice'),
+                    selected: _index2 == 3,
+                    onTap: () {
+                      _index2 = 3;
+                      tapTile();
+                    },
+                  ),
+                ],
+              )
             ]
           ),
     );
@@ -128,6 +176,12 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       _index = value;
       _message2 = 'You tapped "'+ items[_index] + '"';
+    });
+  }
+
+  void tapTile(){
+    setState(() {
+      _message3 = 'You tapped No, $_index2';
     });
   }
 }
