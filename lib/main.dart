@@ -21,18 +21,10 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   String _message;
-  String _message2;
-  String _message3;
-  String _stars = "";
-  int _star = 2;
-  int _index = 0;
-  int _index2;
 
   @override
   void initState(){
     _message = 'ok';
-    _message2 = 'stay';
-    _message3 = 'stand by';
     super.initState();
   }
 
@@ -44,144 +36,99 @@ class _MyHomePageState extends State<MyHomePage> {
             leading: BackButton(
               color: Colors.white,
             ),
-            actions: <Widget>[
-              IconButton(
-                icon: Icon(Icons.android),
-                tooltip: 'add star',
-                onPressed: iconPressedA,
-              ),
-              IconButton(
-                icon: Icon(Icons.favorite),
-                tooltip: 'subtract star',
-                onPressed: iconPressedB,
-              ),
-            ],
-            bottom: PreferredSize(
-              preferredSize: const Size.fromHeight(30.0),
-              child: Center(
-                child:
-                  Text(_stars,
-                    style: TextStyle(
-                      fontSize: 22.0,
-                      color: Colors.white,
+          ),
+          body: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                Container(
+                  color: Colors.blue,
+                  height: 120.0,
+                  child: const Center(
+                    child: Text(
+                      'One',
+                      style: const TextStyle(
+                        fontSize: 32.0
+                      )
                     ),
                   ),
-              ),
-          ),
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: _index,
-          items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              title: Text('bottom'),
-              icon: Icon(Icons.android),
+                ),
+                Container(
+                  color: Colors.white,
+                  height: 120.0,
+                  child: const Center(
+                    child: Text(
+                      'Two',
+                      style: const TextStyle(
+                        fontSize: 32.0
+                      )
+                    ),
+                  ),
+                ),
+                Container(
+                  color: Colors.blue,
+                  height: 120.0,
+                  child: const Center(
+                    child: Text(
+                      'Three',
+                      style: const TextStyle(
+                        fontSize: 32.0
+                      )
+                    ),
+                  ),
+                ),
+                Container(
+                  color: Colors.white,
+                  height: 120.0,
+                  child: const Center(
+                    child: Text(
+                      'Four',
+                      style: const TextStyle(
+                        fontSize: 32.0
+                      )
+                    ),
+                  ),
+                ),
+                Container(
+                  color: Colors.blue,
+                  height: 120.0,
+                  child: const Center(
+                    child: Text(
+                      'Five',
+                      style: const TextStyle(
+                        fontSize: 32.0
+                      )
+                    ),
+                  ),
+                ),
+                Container(
+                  color: Colors.red,
+                  height: 120.0,
+                  child: const Center(
+                    child: Text(
+                      'Six',
+                      style: const TextStyle(
+                        fontSize: 32.0
+                      )
+                    ),
+                  ),
+                ),
+                Container(
+                  color: Colors.green,
+                  height: 120.0,
+                  child: const Center(
+                    child: Text(
+                      'Seven',
+                      style: const TextStyle(
+                        fontSize: 32.0
+                      )
+                    ),
+                  ),
+                ),
+              ],
             ),
-            BottomNavigationBarItem(
-              title: Text('bottom'),
-              icon: Icon(Icons.favorite),
-            ),
-          ],
-          onTap: tapBottomIcon,
-        ),
-        body:
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                _message,
-                style: const TextStyle(
-                  fontSize: 28.0,
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(20.0),
-              ),
-              Text(
-                _message2,
-                style: const TextStyle(
-                  fontSize: 28.0,
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(20.0),
-              ),
-              Text(
-                _message3,
-                style: const TextStyle(
-                  fontSize: 28.0,
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(20.0),
-              ),
-              ListView(
-                shrinkWrap: true,
-                padding: const EdgeInsets.all(20.0),
-                children: <Widget>[
-                  ListTile(
-                    leading: const Icon(Icons.favorite),
-                    title: const Text('First choice'),
-                    selected: _index2 == 1,
-                    onTap: () {
-                      _index2 = 1;
-                      tapTile();
-                    },
-                  ),
-                  ListTile(
-                    leading: const Icon(Icons.android),
-                    title: const Text('Second choice'),
-                    selected: _index2 == 2,
-                    onTap: () {
-                      _index2 = 2;
-                      tapTile();
-                    },
-                  ),
-                  ListTile(
-                    leading: const Icon(Icons.favorite_border),
-                    title: const Text('Third choice'),
-                    selected: _index2 == 3,
-                    onTap: () {
-                      _index2 = 3;
-                      tapTile();
-                    },
-                  ),
-                ],
-              )
-            ]
-          ),
+          )
     );
-  }
-  void iconPressedA(){
-    _message = 'tap "android".';
-    _star++;
-    update();
-  }
-
-  void iconPressedB(){
-    _message = 'tap "favorite".';
-    _star--;
-    update();
-  }
-
-  void update(){
-    _star = _star < 0 ? 0 : _star > 5 ? 5 : _star;
-    setState(() {
-      _stars = '★★★★★☆☆☆☆☆'.substring(5 - _star, 5 - _star + 5);
-      _message = _message + '[$_star]';
-    });
-  }
-
-  void tapBottomIcon(int value){
-    var items = ['Android', 'Heart'];
-    setState(() {
-      _index = value;
-      _message2 = 'You tapped "'+ items[_index] + '"';
-    });
-  }
-
-  void tapTile(){
-    setState(() {
-      _message3 = 'You tapped No, $_index2';
-    });
   }
 }
