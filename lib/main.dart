@@ -35,8 +35,24 @@ class _MyHomePageState extends State<MyHomePage> {
       builder: (BuildContext context) => AlertDialog(
         title: Text("Warning"),
         content: Text("This is warning!!"),
-        ),
-    );
+        actions: <Widget>[
+          FlatButton(
+            child: const Text('Cancel'),
+            onPressed: () => Navigator.pop<String>(context, 'Cancel'),
+          ),
+          FlatButton(
+            child: const Text('OK'),
+            onPressed: () => Navigator.pop<String>(context, 'OK'),
+          ),
+        ],
+      ),
+    ).then<void>((value) => resultAlert(value));
+  }
+
+  void resultAlert(String value){
+    setState(() {
+      _message = 'selected $value';
+    });
   }
 
   @override Widget build(BuildContext context){
