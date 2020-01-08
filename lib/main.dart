@@ -20,12 +20,24 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  String _message;
+  List _items = <Widget>[];
 
   @override
   void initState(){
-    _message = 'ok';
     super.initState();
+    for (var i = 0; i < 10; i++){
+      var item = Container(
+        color: i.isOdd ? Colors.blue : Colors.white,
+        height: 100.0,
+        child: Center(
+          child: Text(
+            'No, $i',
+            style: const TextStyle(fontSize: 32.0),
+          ),
+        ),
+      );
+      _items.add(item);
+    }
   }
 
   @override
@@ -37,97 +49,35 @@ class _MyHomePageState extends State<MyHomePage> {
               color: Colors.white,
             ),
           ),
-          body: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
-                Container(
-                  color: Colors.blue,
-                  height: 120.0,
-                  child: const Center(
-                    child: Text(
-                      'One',
-                      style: const TextStyle(
-                        fontSize: 32.0
+          body: CustomScrollView(
+            slivers: <Widget>[
+              SliverAppBar(
+                pinned: true,
+                expandedHeight: 200.0,
+                flexibleSpace: FlexibleSpaceBar(
+                  title: Text('sliver'),
+                  background: Stack(
+                    fit: StackFit.expand,
+                    children: <Widget>[
+                      Image.asset(
+                        'images/planet.jpg',
+                        fit:BoxFit.fill,
                       )
-                    ),
+                    ],
                   ),
                 ),
-                Container(
-                  color: Colors.white,
-                  height: 120.0,
-                  child: const Center(
-                    child: Text(
-                      'Two',
-                      style: const TextStyle(
-                        fontSize: 32.0
-                      )
-                    ),
-                  ),
-                ),
-                Container(
-                  color: Colors.blue,
-                  height: 120.0,
-                  child: const Center(
-                    child: Text(
-                      'Three',
-                      style: const TextStyle(
-                        fontSize: 32.0
-                      )
-                    ),
-                  ),
-                ),
-                Container(
-                  color: Colors.white,
-                  height: 120.0,
-                  child: const Center(
-                    child: Text(
-                      'Four',
-                      style: const TextStyle(
-                        fontSize: 32.0
-                      )
-                    ),
-                  ),
-                ),
-                Container(
-                  color: Colors.blue,
-                  height: 120.0,
-                  child: const Center(
-                    child: Text(
-                      'Five',
-                      style: const TextStyle(
-                        fontSize: 32.0
-                      )
-                    ),
-                  ),
-                ),
-                Container(
-                  color: Colors.red,
-                  height: 120.0,
-                  child: const Center(
-                    child: Text(
-                      'Six',
-                      style: const TextStyle(
-                        fontSize: 32.0
-                      )
-                    ),
-                  ),
-                ),
-                Container(
-                  color: Colors.green,
-                  height: 120.0,
-                  child: const Center(
-                    child: Text(
-                      'Seven',
-                      style: const TextStyle(
-                        fontSize: 32.0
-                      )
-                    ),
-                  ),
-                ),
-              ],
-            ),
+                actions: <Widget>[
+                  IconButton(
+                    icon: const Icon(Icons.android),
+                    tooltip: 'icon button',
+                    onPressed: (){ print('pressed');},
+                  )
+                ],
+              ),
+              SliverList(
+                delegate: SliverChildListDelegate(_items),
+              )
+            ],
           )
     );
   }
