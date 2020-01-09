@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter/services.dart';
-
-import 'dart:typed_data';
-import 'dart:ui' as ui;
+import 'dart:math';
 
 void main() => runApp(new MyApp());
 
@@ -51,30 +48,11 @@ class MyRenderBoxWidget extends SingleChildRenderObjectWidget{
 }
 
 class _MyRenderBox extends RenderBox {
-  ui.Image _img;
 
   @override
   bool hitTest(HitTestResult result, {@required Offset position}) {
     return true;
   }
-
-  _MyRenderBox(){
-    loadAssetImage('planet.jpg');
-  }
-
-  loadAssetImage(String fname) => rootBundle.load
-    ("images/$fname").then((bd) {
-      Uint8List u8lst = Uint8List.view(bd.buffer);
-      ui.instantiateImageCodec(u8lst).then((codec){
-        codec.getNextFrame().then(
-          (frameInfo){
-            _img = frameInfo.image;
-            markNeedsPaint();
-            print("_img created: $_img");
-          }
-        );
-      });
-    });
 
   @override
   void paint(PaintingContext context, Offset offset){
@@ -82,14 +60,33 @@ class _MyRenderBox extends RenderBox {
     int dx = offset.dx.toInt();
     int dy = offset.dy.toInt();
 
+    Path path = Path();
+    Rect r = Rect.fromLTWH(dx + 50.0, dy + 50.0, 75.0, 75.0);
+    path.addOval(r);
+    r = Rect.fromLTWH(dx + 75.0, dy + 75.0, 125.0, 125.0);
+    path.addOval(r);
+    r = Rect.fromLTWH(dx + 125.0, dy + 125.0, 175.0, 175.0);
+    path.addOval(r);
+    r = Rect.fromLTWH(dx + 125.0, dy + 125.0, 175.0, 175.0);
+    path.addOval(r);
+
+    c.save();
+
     Paint p = Paint();
-    Rect r = Rect.fromLTWH(dx + 50.0, dy + 50.0, 200.0, 200.0);
-    if (_img != null) {
-      Rect r0 = Rect.fromLTWH(0.0, 0.0, _img.width.toDouble(), _img.height.toDouble());
-      c.drawImageRect(_img, r0, r, p);
-      print('draw _img');
-    } else {
-      print('_img is null');
-    }
+    p.color = Color.fromARGB(150, 255, 0, 0);
+    p.style = PaintingStyle.fill;
+    c.drawPath(path, p);
+
+    c.translate(0.0, 100.0);
+    p.color = Color.fromARGB(150, 200, 0, 255);
+    c.drawPath(path, p);
+
+    p.color = Color.fromARGB(150, 0, 200, 0);
+    c.rotate(-0.5 * pi);
+    c.translate(-600.0, -250.0);
+    c.scale(1 * 1.75);
+    c.drawPath(path, p);
+
+    c.restore();
   }
 }
