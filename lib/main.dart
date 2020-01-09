@@ -56,16 +56,12 @@ class _MyRenderBox extends RenderBox {
     int dx = offset.dx.toInt();
     int dy = offset.dy.toInt();
     Paint p = Paint();
-    p.style = PaintingStyle.fill;
-    p.color = Color.fromARGB(150, 50, 0, 255);
-    Offset ctr = Offset(dx + 100.0, dy + 50.0);
-    c.drawCircle(ctr, 75.0, p);
     p.style = PaintingStyle.stroke;
     p.color = Color.fromARGB(150, 200, 0, 0);
-    p.strokeWidth = 20.0;
-    Rect r = Rect.fromLTWH(dx + 100.0, dy + 50.0, 200.0, 150.0);
-    c.drawOval(r, p);
-    r = Rect.fromLTWH(dx + 50.0, dy + 100.0, 150.0, 200.0);
-    c.drawOval(r, p);
+    p.strokeWidth = 5.0;
+    for (var i = 0; i <= 10; i++){
+      Rect r = Rect.fromLTRB(dx + 50.0 + 20 * i, dy + 50.0, dx + 50.0, dy + 250.0 - 20 * i);
+      c.drawLine(r.topLeft, r.bottomRight, p);
+    }
   }
 }
