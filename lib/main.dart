@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 
 void main() => runApp(new MyApp());
 
@@ -111,7 +112,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
           backgroundColor: Color.fromARGB(255, 235, 235, 235),
           appBar: AppBar(
-            title: Text('Material layout App'),
+            title: Text('Qupertino layout App'),
           ),
           body: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -133,7 +134,6 @@ class _MyHomePageState extends State<MyHomePage> {
               CupertinoSwitch(
                 value: _switch,
                 onChanged: (bool value){
-                  print('switch');
                   setState(() {
                     _switch = value;
                     _message = 'switch $_switch';
@@ -146,7 +146,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 max: 1.0,
                 divisions: 100,
                 onChanged: (double value){
-                  print(value);
                   setState(() {
                     _slider = value;
                     _message = 'slider $_slider';
