@@ -71,6 +71,7 @@ class _MyRenderBox extends RenderBox {
     path.addOval(r);
 
     c.save();
+    c.clipRect(Rect.fromLTWH(dx + 75.0, dy + 75.0, 150.0, 150.0));
 
     Paint p = Paint();
     p.color = Color.fromARGB(150, 255, 0, 0);
