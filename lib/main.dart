@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
+
+import 'dart:typed_data';
 import 'dart:ui' as ui;
 
 void main() => runApp(new MyApp());
@@ -47,29 +51,45 @@ class MyRenderBoxWidget extends SingleChildRenderObjectWidget{
 }
 
 class _MyRenderBox extends RenderBox {
+  ui.Image _img;
+
   @override
   bool hitTest(HitTestResult result, {@required Offset position}) {
     return true;
   }
+
+  _MyRenderBox(){
+    loadAssetImage('planet.jpg');
+  }
+
+  loadAssetImage(String fname) => rootBundle.load
+    ("images/$fname").then((bd) {
+      Uint8List u8lst = Uint8List.view(bd.buffer);
+      ui.instantiateImageCodec(u8lst).then((codec){
+        codec.getNextFrame().then(
+          (frameInfo){
+            _img = frameInfo.image;
+            markNeedsPaint();
+            print("_img created: $_img");
+          }
+        );
+      });
+    });
+
   @override
-  void paint(PaintingContext context, Offset offset) {
+  void paint(PaintingContext context, Offset offset){
     Canvas c = context.canvas;
     int dx = offset.dx.toInt();
     int dy = offset.dy.toInt();
-    ui.ParagraphBuilder builder = ui.ParagraphBuilder(
-      ui.ParagraphStyle(textDirection: TextDirection.ltr),
-    )
-    ..pushStyle(ui.TextStyle(color: Colors.red, fontSize: 48.0))
-    ..addText('Hello')
-    ..pushStyle(ui.TextStyle(color: Colors.blue[700], fontSize: 30.0))
-    ..addText('This is a sample of paragraph text')
-    ..pushStyle(ui.TextStyle(color: Colors.blue[200], fontSize: 30.0))
-    ..addText('You can draw Multi-font text');
 
-    ui.Paragraph paragraph = builder.build()
-      ..layout(ui.ParagraphConstraints(width: 300.0));
-
-    Offset off = Offset(dx + 50.0, dy + 50.0);
-    c.drawParagraph(paragraph, off);
+    Paint p = Paint();
+    Rect r = Rect.fromLTWH(dx + 50.0, dy + 50.0, 200.0, 200.0);
+    if (_img != null) {
+      Rect r0 = Rect.fromLTWH(0.0, 0.0, _img.width.toDouble(), _img.height.toDouble());
+      c.drawImageRect(_img, r0, r, p);
+      print('draw _img');
+    } else {
+      print('_img is null');
+    }
   }
 }
