@@ -80,11 +80,21 @@ class _MyRenderBox extends RenderBox {
   @override
   void paint(PaintingContext context, Offset offset){
     Canvas c = context.canvas;
-    int dx = offset.dx.toInt();
-    int dy = offset.dy.toInt();
+    double dx = offset.dx + 30.0;
+    double dy = offset.dy + 30.0;
 
     Paint p = Paint();
-    Rect r = Rect.fromLTWH(dx + 50.0, dy + 50.0, 300, 300);
+    p.style = PaintingStyle.fill;
+    p.blendMode = BlendMode.darken;
+    for (var i = 0; i < 10; i++){
+      for (var j = 0; j < 10; j++){
+        p.color = Color.fromARGB(255, 25 * i, 0, 25 * j);
+        Rect r = Rect.fromLTWH(dx + 30.0 * i, dy + 30.0 * j, 30.0, 30.0);
+        c.drawOval(r, p);
+      }
+    }
+
+    Rect r = Rect.fromLTWH(dx + 0.0, dy + 0.0, 300, 300);
     if (_img != null){
       Rect r0 = Rect.fromLTWH(0.0, 0.0, _img.width.toDouble(), _img.height.toDouble());
       c.drawImageRect(_img, r0, r, p);
@@ -92,15 +102,5 @@ class _MyRenderBox extends RenderBox {
     } else {
       print('-img is null');
     }
-
-    c.save();
-    r = Rect.fromLTWH(dx + 100.0, dy + 100.0, 200.0, 200.0);
-    c.clipRect(r);
-    c.drawColor(Color.fromARGB(255, 225, 0, 255), BlendMode.darken);
-    c.restore();
-    r = Rect.fromLTWH(dx + 170.0, dy + 180.0, 50.0, 50.0);
-    c.clipRect(r);
-    c.drawColor(Color.fromARGB(100, 0, 55, 155), BlendMode.darken);
-    c.restore();
   }
 }
