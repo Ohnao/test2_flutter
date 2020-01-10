@@ -83,24 +83,24 @@ class _MyRenderBox extends RenderBox {
     double dx = offset.dx + 30.0;
     double dy = offset.dy + 30.0;
 
+    if (_img != null){
+      Rect r0 = Rect.fromLTWH(0.0, 0.0, _img.width.toDouble(), _img.height.toDouble());
+      Rect r = Rect.fromLTWH(dx + 0.0, dy + 0.0, 300, 300);
+      c.drawImageRect(_img, r0, r, Paint());
+      print('draw _img');
+    } else {
+      print('-img is null');
+    }
+
     Paint p = Paint();
     p.style = PaintingStyle.fill;
-    p.blendMode = BlendMode.darken;
+    p.blendMode = BlendMode.difference;
     for (var i = 0; i < 10; i++){
       for (var j = 0; j < 10; j++){
         p.color = Color.fromARGB(255, 25 * i, 0, 25 * j);
         Rect r = Rect.fromLTWH(dx + 30.0 * i, dy + 30.0 * j, 30.0, 30.0);
         c.drawOval(r, p);
       }
-    }
-
-    Rect r = Rect.fromLTWH(dx + 0.0, dy + 0.0, 300, 300);
-    if (_img != null){
-      Rect r0 = Rect.fromLTWH(0.0, 0.0, _img.width.toDouble(), _img.height.toDouble());
-      c.drawImageRect(_img, r0, r, p);
-      print('draw _img');
-    } else {
-      print('-img is null');
     }
   }
 }
