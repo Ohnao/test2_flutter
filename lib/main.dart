@@ -24,6 +24,8 @@ class _FirstScreenState extends State<FirstScreen> {
   final _controller = TextEditingController();
   String _input;
 
+  void changeField(String val) => _input = val;
+
   @override
   Widget build (BuildContext context){
     return Scaffold(
@@ -75,7 +77,6 @@ class _FirstScreenState extends State<FirstScreen> {
       ),
     );
   }
-  void changeField(String val) => _input = val;
 }
 
 class SecondScreen extends StatelessWidget {
