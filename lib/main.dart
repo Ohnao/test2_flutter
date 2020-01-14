@@ -8,7 +8,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context){
     return new MaterialApp(
-      home: new FirstScreen(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => FirstScreen(),
+        '/second': (context) => SecondScreen('Second'),
+        '/third': (context) => SecondScreen('Third'),
+      },
     );
   }
 }
@@ -21,10 +26,6 @@ class FirstScreen extends StatefulWidget {
 }
 
 class _FirstScreenState extends State<FirstScreen> {
-  final _controller = TextEditingController();
-  String _input;
-
-  void changeField(String val) => _input = val;
 
   @override
   Widget build (BuildContext context){
@@ -49,10 +50,6 @@ class _FirstScreenState extends State<FirstScreen> {
           Padding(
             padding: EdgeInsets.all(10.0),
           ),
-          TextField(
-            controller: _controller,
-            onChanged: changeField,
-          ),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -69,9 +66,9 @@ class _FirstScreenState extends State<FirstScreen> {
         ],
         onTap: (int value){
           if(value == 1)
-            Navigator.push(
+            Navigator.pushNamed(
               context,
-              MaterialPageRoute(builder:(context) => SecondScreen(_input)),
+              '/second',
             );
         },
       ),
@@ -109,6 +106,8 @@ class SecondScreen extends StatelessWidget {
         ],
         onTap: (int value){
           if(value == 0) Navigator.pop(context);
+          if (value == 1)
+            Navigator.pushNamed(context, '/third');
         },
       ),
     );
