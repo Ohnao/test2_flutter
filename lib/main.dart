@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => FirstScreen(),
         '/second': (context) => SecondScreen('Second'),
-        '/third': (context) => SecondScreen('Third'),
+        '/third': (context) => ThirdScreen('Third'),
       },
     );
   }
@@ -85,7 +85,7 @@ class SecondScreen extends StatelessWidget {
   Widget build (BuildContext context){
     return Scaffold(
       appBar: AppBar(
-        title: Text('Next'),
+        title: Text('_value'),
       ),
       body: Center(
         child: Container(
@@ -108,6 +108,44 @@ class SecondScreen extends StatelessWidget {
           if(value == 0) Navigator.pop(context);
           if (value == 1)
             Navigator.pushNamed(context, '/third');
+        },
+      ),
+    );
+  }
+}
+
+class ThirdScreen extends StatelessWidget {
+  final String _value;
+
+  ThirdScreen(this._value);
+
+  @override
+  Widget build (BuildContext context){
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(_value),
+      ),
+      body: Row(
+        children: <Widget>[
+            Text('あいうえお'),
+            Text('かきくけこ'),
+            Text('さしすせそ'),
+        ]
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: 0,
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            title: Text('prev'),
+            icon: Icon(Icons.navigate_before),
+          ),
+          BottomNavigationBarItem(
+            title: Text('?'),
+            icon: Icon(Icons.android),
+          ),
+        ],
+        onTap: (int value){
+          if(value == 0) Navigator.pop(context);
         },
       ),
     );
