@@ -33,20 +33,11 @@ class _FirstScreenState extends State<FirstScreen> {
       appBar: AppBar(
         title: Text('First-Screen'),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        mainAxisSize: MainAxisSize.max,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+      body: Row(
         children: <Widget>[
-          Text(
-            'Home Screen',
-            style: TextStyle(
-              fontSize: 32.0,
-              color: const Color(0xFF000000),
-              fontWeight: FontWeight.w300,
-              fontFamily: "Roboto",
-            ),
-          ),
+            Text('あいうえお'),
+            Text('かきくけこ'),
+            Text('さしすせそ'),
           Padding(
             padding: EdgeInsets.all(10.0),
           ),
