@@ -31,7 +31,7 @@ class _FirstScreenState extends State<FirstScreen> {
   Widget build (BuildContext context){
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home'),
+        title: Text('First-Screen'),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
