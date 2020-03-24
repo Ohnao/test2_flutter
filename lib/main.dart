@@ -26,6 +26,7 @@ class FirstScreen extends StatefulWidget {
 }
 
 class _FirstScreenState extends State<FirstScreen> {
+  List <String> list = ['あいうえお', 'かきくけこ', 'さしすせそ'];
 
   @override
   Widget build (BuildContext context){
@@ -35,9 +36,9 @@ class _FirstScreenState extends State<FirstScreen> {
       ),
       body: Row(
         children: <Widget>[
-            Text('あいうえお'),
-            Text('かきくけこ'),
-            Text('さしすせそ'),
+          Text(list[0]),
+          Text(list[1]),
+          Text(list[2]),
           Padding(
             padding: EdgeInsets.all(10.0),
           ),
