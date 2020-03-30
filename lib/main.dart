@@ -25,24 +25,22 @@ class FirstScreen extends StatefulWidget {
   _FirstScreenState createState() => new _FirstScreenState();
 }
 
-class _FirstScreenState extends State<FirstScreen> {
-  List <String> list = ['あいうえお', 'かきくけこ', 'さしすせそ'];
+ Widget getTexts (List<String> strings) {
+   List <Widget> list = new List<Widget>();
+   for(var i = 0; i < list.length; i++) {
+     list.add(new Text(strings[i]));
+   }
+   return new Row(children: list);
+ }
 
+class _FirstScreenState extends State<FirstScreen> {
+  List <String> lists = ['ほげほげ', 'ほげほげ', 'ほげほげ'];
+  
   @override
   Widget build (BuildContext context){
     return Scaffold(
       appBar: AppBar(
         title: Text('First-Screen'),
-      ),
-      body: Row(
-        children: <Widget>[
-          Text(list[0]),
-          Text(list[1]),
-          Text(list[2]),
-          Padding(
-            padding: EdgeInsets.all(10.0),
-          ),
-        ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 1,
