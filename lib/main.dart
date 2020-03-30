@@ -27,7 +27,7 @@ class FirstScreen extends StatefulWidget {
 
  Widget getTexts (List<String> strings) {
    List <Widget> list = new List<Widget>();
-   for(var i = 0; i < list.length; i++) {
+   for(var i = 0; i < strings.length; i++) {
      list.add(new Text(strings[i]));
    }
    return new Row(children: list);
@@ -41,6 +41,9 @@ class _FirstScreenState extends State<FirstScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('First-Screen'),
+      ),
+      body: Container(
+        child: getTexts(lists),
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 1,
