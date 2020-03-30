@@ -25,13 +25,13 @@ class FirstScreen extends StatefulWidget {
   _FirstScreenState createState() => new _FirstScreenState();
 }
 
- Widget getTexts (List<String> strings) {
-   List <Widget> list = new List<Widget>();
-   for(var i = 0; i < strings.length; i++) {
-     list.add(new Text(strings[i]));
-   }
-   return new Row(children: list);
- }
+Widget getTexts (List<String> strings) {
+  List <Widget> list = new List<Widget>();
+  for(var i = 0; i < strings.length; i++) {
+    list.add(new Text(strings[i]));
+  }
+  return new Row(children: list);
+}
 
 class _FirstScreenState extends State<FirstScreen> {
   List <String> lists = ['ほげほげ', 'ほげほげ', 'ほげほげ'];
