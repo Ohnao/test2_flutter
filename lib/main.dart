@@ -34,18 +34,12 @@ Widget getTexts (List<String> strings) {
 }
 
 class _FirstScreenState extends State<FirstScreen> {
-  List <String> lists;
+  List <String> lists = ['ほげほげ', 'ほげほげ', 'ほげほげ'];
 
   @override
   initState() {
     super.initState();
-    lists = ['ほげほげ', 'ほげほげ', 'ほげほげ'];
-  }
-
-  initText() {
-    setState(() {
-      lists = ['hogehoge', 'hogehoge', 'hogehoge'];
-    });
+    lists = ['hogehoge', 'hogehoge', 'hogehoge'];
   }
 
   @override
