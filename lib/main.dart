@@ -22,20 +22,32 @@ class FirstScreen extends StatefulWidget {
   FirstScreen({Key key}) : super(key: key);
 
   @override
-  _FirstScreenState createState() => new _FirstScreenState();
+  _FirstScreenState createState() => _FirstScreenState();
 }
 
 Widget getTexts (List<String> strings) {
-  List <Widget> list = new List<Widget>();
+  List <Widget> list = List<Widget>();
   for(var i = 0; i < strings.length; i++) {
-    list.add(new Text(strings[i]));
+    list.add(Text(strings[i]));
   }
-  return new Row(children: list);
+  return Row(children: list);
 }
 
 class _FirstScreenState extends State<FirstScreen> {
-  List <String> lists = ['ほげほげ', 'ほげほげ', 'ほげほげ'];
-  
+  List <String> lists;
+
+  @override
+  initState() {
+    super.initState();
+    lists = ['ほげほげ', 'ほげほげ', 'ほげほげ'];
+  }
+
+  initText() {
+    setState(() {
+      lists = ['hogehoge', 'hogehoge', 'hogehoge'];
+    });
+  }
+
   @override
   Widget build (BuildContext context){
     return Scaffold(
