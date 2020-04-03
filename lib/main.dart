@@ -42,6 +42,12 @@ class _FirstScreenState extends State<FirstScreen> {
     lists = ['hogehoge', 'hogehoge', 'hogehoge'];
   }
 
+  void setText(){
+    setState(() {
+      lists = ['bar', 'bar', 'bar'];
+    });
+  }
+
   @override
   Widget build (BuildContext context){
     return Scaffold(
@@ -50,6 +56,9 @@ class _FirstScreenState extends State<FirstScreen> {
       ),
       body: Container(
         child: getTexts(lists),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: setText,
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 1,
