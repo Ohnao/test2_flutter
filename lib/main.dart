@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/semantics.dart';
 
 void main() => runApp(new MyApp());
 
@@ -14,6 +15,22 @@ class MyApp extends StatelessWidget {
         '/second': (context) => SecondScreen('Second'),
         '/third': (context) => ThirdScreen('Third'),
       },
+    );
+  }
+}
+
+class Texts extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        children: <Widget>[
+          Text('ほげほげ'),
+          Text('ほげほげ'),
+          Text('ほげほげ'),
+        ],
+      ),
     );
   }
 }
@@ -36,17 +53,17 @@ Widget getTexts (List<String> strings) {
 class _FirstScreenState extends State<FirstScreen> {
   List <String> lists = ['ほげほげ', 'ほげほげ', 'ほげほげ'];
 
-  @override
-  initState() {
-    super.initState();
-    lists = ['hogehoge', 'hogehoge', 'hogehoge'];
-  }
+  //@override
+  //initState() {
+  //  super.initState();
+  //  lists = ['hogehoge', 'hogehoge', 'hogehoge'];
+  //}
 
-  void setText(){
-    setState(() {
-      lists = ['bar', 'bar', 'bar'];
-    });
-  }
+  //void setText(){
+  //  setState(() {
+  //    lists = ['bar', 'bar', 'bar'];
+  //  });
+  //}
 
   @override
   Widget build (BuildContext context){
@@ -55,11 +72,11 @@ class _FirstScreenState extends State<FirstScreen> {
         title: Text('First-Screen'),
       ),
       body: Container(
-        child: getTexts(lists),
+        child: Texts,
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: setText,
-      ),
+      //floatingActionButton: FloatingActionButton(
+      //  onPressed: setText,
+      //),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 1,
         items: <BottomNavigationBarItem>[
