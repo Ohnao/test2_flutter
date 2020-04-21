@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/semantics.dart';
 
 void main() => runApp(new MyApp());
 
@@ -72,7 +71,7 @@ class _FirstScreenState extends State<FirstScreen> {
         title: Text('First-Screen'),
       ),
       body: Container(
-        child: Texts,
+        child: Texts(),
       ),
       //floatingActionButton: FloatingActionButton(
       //  onPressed: setText,
